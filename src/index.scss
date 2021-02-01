@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin flexBox($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to right, rgb(33, 196, 250), rgb(20, 246, 246));
+  text-align: center;
+}
+
+header {
+  @include flexBox(space-evenly, center, column);
+  height: 20vh;
+  h1 {
+    font-size: 3rem;
+  }
+  form {
+    input {
+      width: 300px;
+      font-size: 18px;
+      padding: 5px 10px;
+      border: 1px black solid;
+      border-radius: 3px;
+      &::placeholder {
+        font-family: "Poppins", sans-serif;
+      }
+    }
+    button {
+      font-size: 18px;
+      padding: 5px 10px;
+      border: 1px black solid;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+      &:hover {
+        transition: all 0.3s ease;
+        opacity: 0.75;
+      }
+    }
+  }
+}
+
+.todo__container {
+  padding: 50px 30px;
+  min-height: 80vh;
+  width: 100%;
+  @include flexBox(flex-start, center, column);
+  .todo {
+    cursor: pointer;
+    margin: 10px 0;
+    @include flexBox(space-between, center, row);
+    width: 350px;
+    background: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    .task {
+      padding-left: 10px;
+    }
+    .icons {
+      padding: 0;
+      @include flexCenter(row);
+      button {
+        height: 100%;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        padding: 7px;
+        i {
+          font-size: 2rem;
+          color: white;
+        }
+      }
+      button.check {
+        background-color: green;
+      }
+      button.trash {
+        background-color: red;
+      }
+    }
+  }
+  .todo.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+    transition: all 0.3s ease;
+    button.check {
+      pointer-events: none;
+    }
+  }
+
+  .todo.important {
+    border: 3px green solid;
+    border-radius: 3px;
+  }
+}
